@@ -20,6 +20,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _i = 0;
+  void add() {
+    setState(() {
+      _i++;
+    });
+  }
+
+  void sub() {
+    setState(() {
+      _i--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +41,17 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         padding: EdgeInsets.all(5),
-        child: Card(
-          elevation: 20,
-          color: Colors.blue[300],
-          child: Text("Hey Friend"),
-        ),
+        child: Column(children: [
+          Text("Value ${_i}"),
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: add,
+          ),
+          IconButton(
+            icon: Icon(Icons.remove),
+            onPressed: sub,
+          )
+        ]),
       ),
     );
   }

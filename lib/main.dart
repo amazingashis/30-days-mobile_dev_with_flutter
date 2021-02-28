@@ -20,16 +20,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _i = 0;
-  void add() {
+  String _value = '';
+  void _change(String value) {
     setState(() {
-      _i++;
+      _value = "Changed ${value}";
     });
   }
 
-  void sub() {
+  void _submit(String value) {
     setState(() {
-      _i--;
+      _value = "Submit ${value}";
     });
   }
 
@@ -42,15 +42,16 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         padding: EdgeInsets.all(5),
         child: Column(children: [
-          Text("Value ${_i}"),
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: add,
+          Text(_value),
+          TextField(
+            autofocus: true,
+            autocorrect: true,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+                hintText: "Hint", labelText: "Hello", icon: Icon(Icons.people)),
+            onChanged: _change,
+            onSubmitted: _submit,
           ),
-          IconButton(
-            icon: Icon(Icons.remove),
-            onPressed: sub,
-          )
         ]),
       ),
     );

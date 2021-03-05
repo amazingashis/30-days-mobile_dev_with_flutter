@@ -46,6 +46,27 @@ class _SwitchtrialState extends State<Switchtrial> {
   List<BottomNavigationBarItem> _items;
   String _values = '';
 
+  void _showButtom() {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Click me"),
+              RaisedButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text("Close"),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     _items = new List();
@@ -102,6 +123,10 @@ class _SwitchtrialState extends State<Switchtrial> {
           RaisedButton(
             onPressed: _onchanged4,
             child: Text("Click Me"),
+          ),
+          RaisedButton(
+            onPressed: _showButtom,
+            child: Text("Navi"),
           )
         ],
       ),
